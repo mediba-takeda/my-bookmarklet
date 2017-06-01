@@ -1,0 +1,16 @@
+{
+  "name": "my-bookmarklet",
+  "version": "1.0.0",
+  "description": "JavaScript Bookmarklet Utilities",
+  "author": "[mediba] Satoshi Takeda <takeda@mediba.jp>",
+  "license": "MIT",
+  "scripts": {
+    "cleanup": "rimraf dist/*.js dist/**/*.js",
+    "prebuild": "npm run cleanup",
+    "build": "node lib/walkdir.js"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.1",
+    "uglify-es": "^3.0.7"
+  }
+}
