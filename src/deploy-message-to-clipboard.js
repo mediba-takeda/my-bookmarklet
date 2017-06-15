@@ -17,7 +17,7 @@
     messageObj.env = '???'
   }
 
-  let text = 'フロント（web, conv）, Turmeric, パッチ'
+  let text = 'フロント（web, conv, gacha）, Turmeric, パッチ'
   let dialog = window.prompt('対象はどこですか？', text)
 
   if (dialog != '') {
