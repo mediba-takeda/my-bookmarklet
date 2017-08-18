@@ -4,7 +4,7 @@
     title: document.querySelector('.js-issue-title').innerHTML.trim(),
     target: 'フロント（web）',
     url: location.href,
-    isMerged: document.querySelector('.State.State--purple').innerText.toLowerCase().trim() === 'merged'
+    isMerged: document.querySelector('.State').innerText.toLowerCase().trim() === 'merged'
   }
 
   const actualBranch = document.querySelector('.commit-ref span').innerHTML
