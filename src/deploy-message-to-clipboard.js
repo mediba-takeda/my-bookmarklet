@@ -1,12 +1,13 @@
 (function(){
-  let messageObj = {
+  const messageObj = {
     env: null,
     title: document.querySelector('.js-issue-title').innerHTML.trim(),
     target: 'フロント（web）',
-    url: location.href
+    url: location.href,
+    isMerged: document.querySelector('.State.State--purple').innerText.toLowerCase().trim() === 'merged'
   }
 
-  let actualBranch = document.querySelector('.commit-ref span').innerHTML
+  const actualBranch = document.querySelector('.commit-ref span').innerHTML
   if (actualBranch === 'master') {
     messageObj.env = '商用'
   } else if (actualBranch.includes('test/stg')) {
@@ -17,8 +18,8 @@
     messageObj.env = '???'
   }
 
-  let text = 'フロント（web, conv, gacha）, Turmeric, パッチ'
-  let dialog = window.prompt('対象はどこですか？', text)
+  const text = 'フロント（web, conv, gacha）, Turmeric, バッチ'
+  const dialog = window.prompt('対象はどこですか？', text)
 
   if (dialog != '') {
     messageObj.target = dialog
@@ -26,9 +27,9 @@
     messageObj.target = text
   }
 
-  let copyMessage = `#デプロイ
-
-これよりデプロイします。
+  const copyMessage = `${actualBranch === 'master'
+    ? '#デプロイ\n\nこれよりデプロイします。'
+    : '@バックエンドのデプロイできる方\n\n下記内容を'+messageObj.env+'にデプロイをお願いいたします。'}
 
 ----
 環境: ${messageObj.env}
@@ -37,6 +38,7 @@
 内容： ${messageObj.title}
 ----
 ${messageObj.url}
+${messageObj.isMerged ? '※ マージ済' : '※ 当日マージします'}
 
 よろしくお願いいたします。
 `
